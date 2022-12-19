@@ -1,49 +1,140 @@
-from IPython.display import Audio
-from scipy.io import wavfile
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Multimedia Presentation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+    </style>
+</head>
+<body class="shower list">
 
-# Считывание аудиофайла и частоты дискретизации
-samplerate, audio_file = wavfile.read('valim.wav')
-# Задание начала и окончания отрывка аудиофайла 
-# начало с 10 сек, длительность 10 сек
-start = samplerate * 14 
-end = start + samplerate * 10
-# Вывод аудиофайла с помощью пакета Audio
-Audio(data= audio_file[start:end, 0], rate=samplerate)
+<header class="caption">
+
+</header>
+
+<section class="slide" id="Title">
+
+    <figure>
+        <img class="cover" src="pictures/1.jpg" alt="Title" >
+
+    </figure>
+</section>
+
+<section class="slide" id="video">
+
+    <figure>
+        <img class="cover" src="pictures/2.jpg" alt="video">
+
+    </figure>
+</section>
+<section class="slide" id="obr_video">
+
+    <figure>
+        <img class="cover" src="pictures/3.jpg" alt="obr_video">
+
+    </figure>
+</section>
+<section class="slide" id="obr_video1">
+
+    <figure>
+        <img class="cover" src="pictures/4.jpg" alt="obr_video1">
+
+    </figure>
+</section>
+<section class="slide" id="electro">
+
+    <figure>
+        <img class="cover" src="pictures/5.jpg" alt="electro">
+
+    </figure>
+</section>
+<section class="slide" id="line">
+
+    <figure>
+        <img class="cover" src="pictures/6.jpg" alt="line">
+
+    </figure>
+</section>
+<section class="slide" id="no_line">
+
+    <figure>
+        <img class="cover" src="pictures/7.jpg" alt="no_line">
+
+    </figure>
+</section>
+<section class="slide" id="no_line2">
+
+    <figure>
+        <img class="cover" src="pictures/8.jpg" alt="no_line2">
+
+    </figure>
+</section>
+<section class="slide" id="po">
+
+    <figure>
+        <img class="cover" src="pictures/9.jpg" alt="po">
+
+    </figure>
+</section>
+<section class="slide" id="po1">
+
+    <figure>
+        <img class="cover" src="pictures/10.jpg" alt="po1">
+
+    </figure>
+</section>
+<section class="slide" id="po2">
+
+    <figure>
+        <img class="cover" src="pictures/11.jpg" alt="po2">
+
+    </figure>
+</section>
+
+<section class="slide" id="app">
+
+    <figure>
+        <img class="cover" src="pictures/12.jpg" alt="app">
+
+    </figure>
+</section>
+
+<section class="slide" id="mob">
+
+    <figure>
+        <img class="cover" src="pictures/13.jpg" alt="mob">
+
+    </figure>
+</section>
+<section class="slide" id="mont">
+
+    <figure>
+        <img class="cover" src="pictures/14.jpg" alt="mont">
+
+    </figure>
+</section>
+<section class="slide" id="attension">
+
+    <figure>
+        <img class="cover" src="pictures/15.jpg" alt="attension">
+
+    </figure>
+</section>
 
 
-from sklearn.decomposition import PCA
-import numpy as np
-def pca_reduce(signal, n_components, block_size=1024):
-    # Обнуление сигнала, чтобы он был кратен block_size
-    samples = len(signal) # определение длины сигнала
-    hanging = block_size - np.mod(samples, block_size) # нахождение разницы сигнала к обнулению
-    padded = np.lib.pad(signal, (0, hanging), 'constant', constant_values=0) # создание нового массива, кратного block_size 
-    
-    # Изменение формы сигнала, чтобы он имел размер block_size
-    reshaped = padded.reshape((len(padded) // block_size, block_size))
-    
-    # Запуск PCA сжатия
-    pca = PCA(n_components=n_components)
-    pca.fit(reshaped)
-    transformed = pca.transform(reshaped)
-    reconstructed = pca.inverse_transform(transformed).reshape((len(padded)))
-    return pca, transformed, reconstructed
+<!-- <footer class="badge">
+     <a href="https://github.com/shower/shower">Fork me on GitHub</a>
+ </footer>-->
+
+<div class="progress"></div>
+
+<script src="node_modules/@shower/core/dist/shower.js"></script>
 
 
-audio_file_left = audio_file[:,0]
-
-# Применение функции сжатия к аудиофайлу
-_, _, reconstructed = pca_reduce(audio_file_left, 1024, 1024)
-
-# Вывод аудиофайла с помощью пакета Audio
-Audio(data=reconstructed[start:end], rate=samplerate)
-
-
-
-# Применение функции сжатия к аудиофайлу
-_, _, reconstructed = pca_reduce(audio_file_left, 32, 1024)
-
-# Вывод аудиофайла с помощью пакета Audio
-Audio(data=reconstructed[start:end], rate=samplerate)
-
-#wavfile.write("2.wav", samplerate, reconstructed[2].astype(np.int16))
+</body>
+</html>
